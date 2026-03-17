@@ -4,6 +4,8 @@ import torch.optim as optim
 import random
 import numpy as np
 
+# from training.train_dqn_city import state_size
+state_size = 11
 
 class QNetwork(nn.Module):
 
@@ -12,6 +14,8 @@ class QNetwork(nn.Module):
 
         self.model = nn.Sequential(
             nn.Linear(state_size, 64),
+            nn.ReLU(),
+            nn.Linear(64, 64),
             nn.ReLU(),
             nn.Linear(64, action_size)
         )
@@ -24,7 +28,7 @@ class DQNAgent:
     def __init__(self, grid_size, action_size=4):
 
         self.grid_size = grid_size
-        self.state_size = 2
+        self.state_size = state_size
         self.action_size = action_size
 
         self.gamma = 0.9
