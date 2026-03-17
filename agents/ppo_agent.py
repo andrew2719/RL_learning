@@ -10,7 +10,9 @@ class PPOPolicy(nn.Module):
         super().__init__()
 
         self.shared = nn.Sequential(
-            nn.Linear(state_size, 64),
+            nn.Linear(state_size, 128),
+            nn.ReLU(),
+            nn.Linear(128, 64),
             nn.ReLU()
         )
 
